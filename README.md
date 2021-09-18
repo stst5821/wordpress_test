@@ -1,13 +1,12 @@
 # wordpress-template
 
-```
-
 ## このテンプレートを使ってテーマを開発する場合の注意点
 
 ### docker-compose.ymlを修正する
 
 wordpressのvolumesを以下のように修正する。
 
+```
 wordpress:
      depends_on:
        - db
@@ -32,3 +31,6 @@ wordpress:
 
 Docker ComposeでWordPressのテーマ開発環境を一瞬で作成する  
 https://qiita.com/akiyama01/items/4dcaf889aad8883b4364
+
+wordpressのSampleThemeを生成してくれるサイト  
+https://underscores.me/
