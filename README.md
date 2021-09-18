@@ -1,4 +1,6 @@
-# wordpress-template
+# wordpress-test
+
+wordpressのキャッチアップ用
 
 ## このテンプレートを使ってテーマを開発する場合の流れ
 
