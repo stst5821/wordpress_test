@@ -1,6 +1,11 @@
 # wordpress-template
 
-## このテンプレートを使ってテーマを開発する場合の注意点
+## このテンプレートを使ってテーマを開発する場合の流れ
+
+### ルートディレクトリ上にテーマを置く
+
+このtemplateには、仮でSampleThemeというディレクトリを置いてある。
+これを消して、同じように作ったテーマを置く。
 
 ### docker-compose.ymlを修正する
 
@@ -20,7 +25,7 @@ wordpress:
        WORDPRESS_DB_PASSWORD: wordpress
        
      // ↓ローカルのSampleThemeを、Docker上のSampleThemeにマウントしている
-     // テーマのファイル名を変える場合は、ここの名前も変える必要がある。
+     // 新たにテーマをdockerで開発したい場合はここの名前も変える必要がある。
      volumes:
       - ./SampleTheme:/var/www/html/wp-content/themes/SampleTheme
       
