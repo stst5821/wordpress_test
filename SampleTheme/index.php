@@ -1,57 +1,38 @@
-<?php
-/**
- * The main template file
- *
- * This is the most generic template file in a WordPress theme
- * and one of the two required files for a theme (the other being style.css).
- * It is used to display a page when nothing more specific matches a query.
- * E.g., it puts together the home page when no home.php file exists.
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
- *
- * @package SampleTheme
- */
+<?php get_header(); ?>
+  <h1 class="title">index.phpだよ</h1>
+  <p>
+    <img src="<?php echo get_template_directory_uri(); ?>/images/no_img.png" alt="画像">
+  </p>
 
-get_header();
-?>
+  <!-- 記事一覧 -->
 
-	<main id="primary" class="site-main">
+  <div id="main" class="col-md-9">
+      <h1>記事一覧</h1>
+      <hr>
+      <?php 
+      if ( have_posts() ) :
+          while ( have_posts() ) : the_post();
+      ?>
+        <!-- アイキャッチ画像があれば表示する -->
+        <?php
+        if ( has_post_thumbnail() ) {
+          the_post_thumbnail();
+        } 
+        ?>
+        <!-- 投稿タイトル表示 -->
+        <h2>
+          <a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a>
+        </h2>
+        <section>
+          <p>作成日時：<?php the_time('Y年n月j日'); ?></p>
+          <!-- 本文を抜粋表示 -->
+          <a href="<?php echo get_permalink(); ?>"><?php the_excerpt(); ?></a>
+        </section>
+        <hr>
+      <?php 
+          endwhile;
+      endif;
+      ?>
+ 		</div>
 
-		<?php
-		if ( have_posts() ) :
-
-			if ( is_home() && ! is_front_page() ) :
-				?>
-				<header>
-					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-				</header>
-				<?php
-			endif;
-
-			/* Start the Loop */
-			while ( have_posts() ) :
-				the_post();
-
-				/*
-				 * Include the Post-Type-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_type() );
-
-			endwhile;
-
-			the_posts_navigation();
-
-		else :
-
-			get_template_part( 'template-parts/content', 'none' );
-
-		endif;
-		?>
-
-	</main><!-- #main -->
-
-<?php
-get_sidebar();
-get_footer();
+<?php get_footer(); ?>

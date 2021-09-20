@@ -1,59 +1,23 @@
-<?php
-/**
- * The header for our theme
- *
- * This is the template that displays all of the <head> section and everything up until <div id="content">
- *
- * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
- *
- * @package SampleTheme
- */
-
-?>
-<!doctype html>
-<html <?php language_attributes(); ?>>
+<!DOCTYPE html>
+<html lang="ja">
 <head>
-	<meta charset="<?php bloginfo( 'charset' ); ?>">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="profile" href="https://gmpg.org/xfn/11">
-
-	<?php wp_head(); ?>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 親テーマは↓を使う、子テーマはget_stylesheet_directory_uriを使う。 -->
+  <link rel="stylesheet" href="<?php bloginfo ('stylesheet_url'); ?>">
+  <title><?php bloginfo('name'); ?></title>
+  <?php wp_head(); ?>
 </head>
-
-<body <?php body_class(); ?>>
-<?php wp_body_open(); ?>
-<div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'sampletheme' ); ?></a>
-
-	<header id="masthead" class="site-header">
-		<div class="site-branding">
-			<?php
-			the_custom_logo();
-			if ( is_front_page() && is_home() ) :
-				?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-				<?php
-			else :
-				?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-				<?php
-			endif;
-			$sampletheme_description = get_bloginfo( 'description', 'display' );
-			if ( $sampletheme_description || is_customize_preview() ) :
-				?>
-				<p class="site-description"><?php echo $sampletheme_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
-			<?php endif; ?>
-		</div><!-- .site-branding -->
-
-		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'sampletheme' ); ?></button>
-			<?php
-			wp_nav_menu(
-				array(
-					'theme_location' => 'menu-1',
-					'menu_id'        => 'primary-menu',
-				)
-			);
-			?>
-		</nav><!-- #site-navigation -->
-	</header><!-- #masthead -->
+<body>
+  <p>キャッチフレーズ：<?php bloginfo('description'); ?></p>
+  <nav>
+  <!-- メニューにセットしたページを表示する -->
+  <?php
+		$args = array(
+			'menu_class' => 'nav navbar-nav',
+			'container' => false,
+		);
+		wp_nav_menu($args);
+		?>
+  </nav>

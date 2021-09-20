@@ -6,7 +6,7 @@
   <h1><?php the_title(); ?></h1>
   <section>
     <?php the_content(); ?>
-  </section>
+    
   <?php endwhile;
   endif; ?>
 <?php get_footer(); ?>
