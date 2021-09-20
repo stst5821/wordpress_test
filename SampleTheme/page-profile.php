@@ -1,5 +1,4 @@
 <?php get_header(); ?>
-  <h1 class="title">固定ページpage.phpだよ</h1>
   <?php if(have_posts()):
     while(have_posts()):the_post(); ?>
 
